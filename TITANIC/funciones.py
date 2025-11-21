@@ -1,7 +1,6 @@
 import pandas as pd
 def promedios(nombre_archivo, nombre_columna):
-    df= pd.read_csv(nombre_archivo)
-    if nombre_columna not in df.columns:
+    if nombre_columna not in nombre_archivo.columns:
         raise  ValueError('Error al procesar la columna')
     def prom(x):
         p = 0
@@ -9,17 +8,17 @@ def promedios(nombre_archivo, nombre_columna):
             p += i
         promedio = p/len(x)
         return promedio
-    return prom(df[nombre_columna])
+    return prom(nombre_archivo[nombre_columna])
 
 
 def sd(data, columna):
-    df=pd.read_csv(data)
     try:
-        print( df[columna].std())
+        return data[columna].std()
     except KeyError:
         return 'Error al procesar la columna'
     except Exception as e:
         return 'Error al procesar la columna'
+
 def percentiles (datas, columna):
     try:
         assert columna in datas.columns, "La columna no existe en el DataFrame"
@@ -29,4 +28,3 @@ def percentiles (datas, columna):
         return {"Percentil 25": percentil_25, "Percentil 50": percentil_50, "Percentil 75": percentil_75}
     except AssertionError as e:
         return str(e)
-percentiles(datas,"NF")
