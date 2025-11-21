@@ -21,7 +21,7 @@ def sd(data, columna):
 
 def percentiles (datas, columna):
     try:
-        assert columna in datas.columns, "La columna no existe en el DataFrame"
+        assert columna in datas.columns, "Error al procesar la columna"
         percentil_25=datas[columna].quantile(0.25)
         percentil_50=datas[columna].quantile(0.50)
         percentil_75=datas[columna].quantile(0.75)
